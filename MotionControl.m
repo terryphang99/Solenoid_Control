@@ -139,37 +139,48 @@ if (handles.keyhold==0)
     handles.keyhold=1;
     guidata(hObject, handles);
     switch eventdata.Key
-      case 'w'
+        % Single magnet cases
+      case 'w' %Activate 'up' magnet
            set(handles.text2, 'String', 'Up');
            queueOutputData(handles.sound1, handles.up_sound);
            startBackground(handles.sound1);
-      case 'd'
+      case 'd' %Activate 'right' magnet
            set(handles.text2, 'String', 'Right');
            queueOutputData(handles.sound1, handles.right_sound);
            startBackground(handles.sound1);
-      case 'a'
+      case 'a' %Activate 'left' magnet
            set(handles.text2, 'String', 'Left');
            queueOutputData(handles.sound1, handles.left_sound);
            startBackground(handles.sound1);
-      case 's'
+      case 's' %Actiavte 'down' magnet
            set(handles.text2, 'String', 'Down');
            queueOutputData(handles.sound1, handles.down_sound);
            startBackground(handles.sound1);
-      case 'z'
+      case 'z' %Activate 'vertical' magnet
            set(handles.text2, 'String', 'Vertical');
            queueOutputData(handles.sound2, handles.vert_sound);
            startBackground(handles.sound2);
-      case 'x'
+      case 'x' %No associated magnet
            set(handles.text2, 'String', 'Vertical2');
            queueOutputData(handles.sound2, handles.vert2_sound);
            startBackground(handles.sound2);
-
-%       case 'r' 
-%            for i=1:120 % Number of loop iterations is equal to time run in minutes
-%            set(handles.text2, 'String', 'Rotate');
-%            queueOutputData(handles.sound, handles.up_sound+handles.down_sound+handles.right_sound+handles.left_sound+handles.vert_sound);
-%            startBackground(handles.sound1);
-%            end
+           
+          
+        % Rotating field cases - comment out if faulty
+      case 'i' %Activate in-plane rotating field
+           for i=1:120 % Number of loop iterations is equal to time run in minutes
+           set(handles.text2, 'String', 'Rotate');
+           queueOutputData(handles.sound1, handles.up_sound+handles.down_sound+handles.right_sound+handles.left_sound);
+           startBackground(handles.sound1);
+           end
+           
+      case 'o' %Activate out-of-plane rotating field (this code block has not been tested - not guaranteed to work)
+           for i=1:120 % Number of loop iterations is equal to time run in minutes
+           set(handles.text2, 'String', 'Rotate');
+           queueOutputData(handles.sound1, handles.sound2, handles.up_sound+handles.vert_sound+handles.down_sound);
+           startBackground(handles.sound1);
+           startBackground(handles.sound2
+           end
     end
 end
 % % 
